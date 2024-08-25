@@ -74,8 +74,11 @@ function App() {
 		})
 		setTodolists(newTodolists)
 	}
-	const addTodolist = () => {
-
+	const addTodolist = (title: string) => {
+		const id = v1()
+		const newTodolist: TodolistType = {id, title, filter: 'all'}
+		setTodolists([newTodolist, ...todolists])
+		setTasks({...tasks, [id]:[]})
 	}
 	const removeTodolist = (todolistId: string) => {
 		const newTodolists = todolists.filter(tl => tl.id !== todolistId)
