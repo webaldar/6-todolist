@@ -87,6 +87,9 @@ function App() {
 		delete tasks[todolistId]
 		setTasks({ ...tasks })
 	}
+	const updateTaskTitle = (todolistId: string, taskId: string, updateTitle: string) => {
+
+	}
 
 	return (
 		<div className="App">
@@ -115,6 +118,7 @@ function App() {
 					changeTaskStatus={changeTaskStatus}
 					filter={tl.filter}
 					removeTodolist={removeTodolist}
+					updateTaskTitle={updateTaskTitle}
 				/>
 			})}
 		</div>

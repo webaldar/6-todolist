@@ -1,18 +1,33 @@
-import {useState} from "react";
+import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type EditableSpanProps = {
-    title: string
+    oldTitle: string
 };
-export const EditableSpan = ({title}: EditableSpanProps) => {
+export const EditableSpan = ({oldTitle}: EditableSpanProps) => {
     const [edit, setEdit] = useState(false)
+    const [updateTitle, setUpdateTitle] = useState(oldTitle)
+    console.log(updateTitle)
     const editHandler = () => {
         setEdit(!edit)
     }
+    const changeUpdateTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setUpdateTitle(event.currentTarget.value)
+    }
+    // const addTaskOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    //     setError(null)
+    //     if (event.key === 'Enter') {
+    //         addItemHandler()
+    //     }
+    // }
 
     return (
         edit
-            ? <input autoFocus onBlur={editHandler} value={title}/>
-            : <span onDoubleClick={editHandler}>{title}</span>
+            ? <input onChange={changeUpdateTitleHandler}
+                     // onKeyUp={addTaskOnKeyUpHandler}
+                     autoFocus
+                     onBlur={editHandler}
+                     value={updateTitle}/>
+            : <span onDoubleClick={editHandler}>{oldTitle}</span>
 
 
     );
